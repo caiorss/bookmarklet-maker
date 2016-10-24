@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<index>
+  <head>
+    <title>Bookmarklet Maker</title>
+    <script>
+      function generateBookmarklet (){
+        var title = document.getElementById("title-input").value ;
+        var code  = document.getElementById("code-textarea").value;
+        var link  = document.getElementById("bookmarklet-a");
+        var codeOutput = document.getElementById("output-textarea");
+
+        var output = "javascript:" + encodeURIComponent(code);
+        
+        
+        link.text = title;
+        link.href = output;
+        codeOutput.value = output; 
+        
+      }
+
+
+     function generateOrgmodeLink(){
+       generateBookmarklet();
+
+       var title = document.getElementById("title-input").value ;
+       var code  = document.getElementById("code-textarea").value;
+       var output = "javascript:" + encodeURIComponent(code);
+
+       prompt("Org-mode link", "[[" + output + "][" + title + "]]"); 
+     }
+     
+    </script>
+    
+    <style>
+     /* body {background-color: powderblue;} */
+     h1   {color: blue;}
+     p    {color: red;}
+
+     #code-textarea {
+       font-size: 14px;
+       line-height: 20px;
+       height: 60px;
+       margin: 4px 0;
+       border: 1px solid #bbb;
+       padding: 4px 7px;
+       width:  725px;
+       height: 318px;        
+     }
+
+     #output-textarea {
+       width: 725px;
+     }
+
+     a.bookmarklet, a.button {
+       /* display: -moz-inline-box; */
+       /* display: inline-block; */
+       padding: 1px 6px;
+       color: #fff;
+       background: #32a0eb;
+       -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       border-radius: 4px;
+   
+     }
+
+     #nodisc-ul {
+       list-style-type: none;
+     }
+     
+    </style>   
+  </head>
+  <body>
+    <h1>Bookmarklet Maker</h1>
+    <div id="main.div">
+      <ul id="nodisc-ul">
+        <li>
+          <label>Title:</label>
+          <input id="title-input"></input>
+        </li>
+        <li> <label>Code</label></li>
+        <li> <textarea id="code-textarea"></textarea> </li>
+        <li>
+          <a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a>
+          <button onclick="generateBookmarklet();">Generate Bookmarklet</button>
+        </li>
+        <li><textarea id="output-textarea"></textarea>
+      </ul>
+    </div>
+
+  </body>
+</index>
