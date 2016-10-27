@@ -1,0 +1,25 @@
+* Bookmarklet Maker
+
+Bookmarklet maker is a small web app to create bookmarklet or small
+executable Javascript apps to peform browser aumtomation tasks. 
+
+You can run this app by accessing the hyperlink: 
+
+ - http://caiorss.github.io/bookmarklet-maker 
+
+If you don't know what is a bookmarklet see: 
+
+ - [[https://www.youtube.com/watch?v=K_A3Y3eqnzE][Creating a Simple Bookmarklet - YouTube]]
+
+
+*See also:*
+
+ - https://www.reddit.com/r/bookmarklets/
+
+ - [[http://www.hongkiat.com/blog/100-useful-bookmarklets-for-better-productivity-ultimate-list/][100+ Useful Bookmarklets For Better Productivity | Ultimate List - Hongkiat]]
+
+ - [[http://www.howtogeek.com/189358/beginner-geek-how-to-use-bookmarklets-on-any-device/][Beginner Geek: How to Use Bookmarklets on Any Device]]
+
+ - [[http://lifehacker.com/395697/top-10-useful-bookmarklets][Top 10 Useful Bookmarklets]]
+
+
