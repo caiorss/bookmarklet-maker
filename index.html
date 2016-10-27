@@ -2,8 +2,10 @@
 <index>
   <head>
     <title>Bookmarklet Maker</title>
-
-    
+    <meta name="keywords" content="bookmarklet, hack, javascript, automate, browse, app"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta name="description" content="Bookmarklet creator tool.">               
+    <meta name="author" content="Caio Rodrigues.">
     <style>
      /* body {background-color: powderblue;} */
 
@@ -12,7 +14,7 @@
        text-align: center;
      }
      
-     p    {color: red;}
+     p    {color: darkblue;}
 
      pre {
        color:       light-gray;
@@ -24,6 +26,9 @@
        white-space: -o-pre-wrap;    /* Opera 7 */
        word-wrap: break-word;       /* Internet Explorer 5.5+ */
        overflow: auto;
+       background-color: #EBECE4; 
+	   width: 40%;
+       max-height: 400px;       
      }
      
      #code-textarea {
@@ -60,29 +65,23 @@
     </style>
 
     <script>
+
+     function cleanCode(code){
+       return code.trim()
+     }
+     
      function generateBookmarklet (){
        var title = document.getElementById("title-input").value ;
        var code  = document.getElementById("code-textarea").value;
        var link  = document.getElementById("bookmarklet-a");
        var codeOutput = document.getElementById("output-textarea");
 
-       var output = "javascript:" +  encodeURIComponent("(function(){" + code +  "})();");
+       var output = "javascript:" +  encodeURIComponent("(function(){" + cleanCode(code) +  "})();");
        
        link.text = title;
        link.href = output;
        codeOutput.value = output; 
        
-     }
-
-
-     function generateOrgmodeLink(){
-       generateBookmarklet();
-
-       var title = document.getElementById("title-input").value ;
-       var code  = document.getElementById("code-textarea").value;
-       var output = "javascript:" + encodeURIComponent(code);
-
-       prompt("Org-mode link", "[[" + output + "][" + title + "]]"); 
      }
 
      function runCode (){
@@ -136,16 +135,40 @@
 
       <p>Sumbmit current URL to Reddit:</p>
       <pre>
-  var url = document.URL ;
-  var title = document.title ;
-    
-  window.location.href = "https://www.reddit.com/r/"
-                          + prompt("Subreddit: ", "")
-                          + "/submit?title="
-                          + title + "&url="
-                          + url ;  
+var url = document.URL ;
+var title = document.title ;
+
+window.location.href = "https://www.reddit.com/r/"
+                        + prompt("Subreddit: ", "")
+                        + "/submit?title="
+                        + title + "&url="
+                        + url ;  
       </pre>
 
+      <p>Submit current URL to Reddit in a new tab</p>
+      <pre>
+var defaultSub = "dummy"
+var subreddit = prompt("Enter the subreddit", defaultSub)
+var baseUrl =  'https://www.reddit.com/r/' + subreddit + 'submit?title=';
+window.open(baseUrl + document.title + '&url=' + document.URL, '_blank') 
+      </pre>
+
+      <p>Generate org-mode hyperlink</p>
+      <pre>
+var md = "[[" + document.URL + "][" + document.title + "]]" ;
+prompt("Enter Ctrl+C to copy this org-mode hyperlink. :", md);
+      </pre>
+      
+      <p>Clear google search URLs to allow easy copy URLs without messing it.</p>
+      <pre>
+var $s = function (selector){
+    return Array.from(document.querySelectorAll(selector));
+};
+
+$s(".rc a").forEach(e => e.onmousedown = null);
+      </pre>
+      
     </div>
+    
   </body>
 </index>
