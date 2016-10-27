@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<index>
+  <head>
+    <title>Bookmarklet Maker</title>
+    <meta name="keywords" content="bookmarklet, hack, javascript, automate, browse, app"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta name="description" content="Bookmarklet creator tool.">               
+    <meta name="author" content="Caio Rodrigues.">
+    <style>
+     /* body {background-color: powderblue;} */
+
+     h1   {
+       color: blue;
+       text-align: center;
+     }
+     
+     p    {color: darkblue;}
+
+     pre {
+       color:       light-gray;
+       display:     block;
+       font-family: monospace;
+       white-space: pre-wrap;       /* css-3 */
+       white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+       white-space: -pre-wrap;      /* Opera 4-6 */
+       white-space: -o-pre-wrap;    /* Opera 7 */
+       word-wrap: break-word;       /* Internet Explorer 5.5+ */
+       overflow: auto;
+       background-color: #EBECE4; 
+	   width: 40%;
+       max-height: 400px;       
+     }
+     
+     #code-textarea {
+       font-size: 14px;
+       line-height: 20px;
+       height: 60px;
+       margin: 4px 0;
+       border: 1px solid #bbb;
+       padding: 4px 7px;
+       width:  725px;
+       height: 318px;        
+     }
+
+     #output-textarea {
+       width: 725px;
+     }
+
+     a.bookmarklet, a.button {
+       /* display: -moz-inline-box; */
+       /* display: inline-block; */
+       padding: 1px 6px;
+       color: #fff;
+       background: #32a0eb;
+       -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       border-radius: 4px;
+   
+     }
+
+     #nodisc-ul {
+       list-style-type: none;
+     }
+     
+    </style>
+
+    <script>
+
+     function cleanCode(code){
+       return code.trim()
+     }
+     
+     function generateBookmarklet (){
+       var title = document.getElementById("title-input").value ;
+       var code  = document.getElementById("code-textarea").value;
+       var link  = document.getElementById("bookmarklet-a");
+       var codeOutput = document.getElementById("output-textarea");
+
+       var output = "javascript:" +  encodeURIComponent("(function(){" + cleanCode(code) +  "})();");
+       
+       link.text = title;
+       link.href = output;
+       codeOutput.value = output; 
+       
+     }
+
+     function runCode (){
+       var code  = document.getElementById("code-textarea").value;
+       eval(code);
+     }
+
+     function clearCode(){
+       document.getElementById("title-input").value = "";
+       document.getElementById("code-textarea").value = "";       
+     }
+     
+    </script>
+    
+  </head>
+  <body>
+    <div id="top.div">
+      <h1>Bookmarklet Maker</h1>
+      <a href="">Github Repository</a>
+    </div>
+    
+    <div id="main.div">
+      <ul id="nodisc-ul">
+        <li>
+          <label>Title:</label>
+          <input id="title-input" value="bookmarklet"></input>
+        </li>
+        <li> <label>Code</label></li>
+        <li> <textarea id="code-textarea">alert('hello world');</textarea> </li>
+        <li>
+          <a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a>
+          <button onclick="generateBookmarklet();">Generate Bookmarklet</button>
+          <button onclick="runCode();">Run Code</button>
+          <button onclick="clearCode();">Clear</button>
+        </li>
+        <li><textarea id="output-textarea"></textarea>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Usage:</h2>
+      <ul>
+        <li>Usage: Paste a code into the form and click on the button generate.</li>
+        <li>To test the bookmarklet click on the blue button.</li>
+        <li>To install the bookmarklet drag and drop it to the bookmars toolbar.</li>        
+      </ul>           
+    </div>
+
+    <div>
+      <h2>Examples:</h2>
+
+      <p>Sumbmit current URL to Reddit:</p>
+      <pre>
+var url = document.URL ;
+var title = document.title ;
+
+window.location.href = "https://www.reddit.com/r/"
+                        + prompt("Subreddit: ", "")
+                        + "/submit?title="
+                        + title + "&url="
+                        + url ;  
+      </pre>
+
+      <p>Submit current URL to Reddit in a new tab</p>
+      <pre>
+var defaultSub = "dummy"
+var subreddit = prompt("Enter the subreddit", defaultSub)
+var baseUrl =  'https://www.reddit.com/r/' + subreddit + 'submit?title=';
+window.open(baseUrl + document.title + '&url=' + document.URL, '_blank') 
+      </pre>
+
+      <p>Generate org-mode hyperlink</p>
+      <pre>
+var md = "[[" + document.URL + "][" + document.title + "]]" ;
+prompt("Enter Ctrl+C to copy this org-mode hyperlink. :", md);
+      </pre>
+      
+      <p>Clear google search URLs to allow easy copy URLs without messing it.</p>
+      <pre>
+var $s = function (selector){
+    return Array.from(document.querySelectorAll(selector));
+};
+
+$s(".rc a").forEach(e => e.onmousedown = null);
+      </pre>
+      
+    </div>
+    
+  </body>
+</index>
