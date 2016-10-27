@@ -1,4 +1,5 @@
 * Bookmarklet Maker
+** Overviiew 
 
 Bookmarklet maker is a small web app to create bookmarklet or small
 executable Javascript apps to peform browser aumtomation tasks. 
@@ -12,7 +13,77 @@ If you don't know what is a bookmarklet see:
  - [[https://www.youtube.com/watch?v=K_A3Y3eqnzE][Creating a Simple Bookmarklet - YouTube]]
 
 
-*See also:*
+** Bookmarklet Cheat Sheet 
+
+*Get current page title*
+
+#+BEGIN_SRC html 
+<title>Paget Title</title>
+#+END_SRC
+
+#+BEGIN_SRC js
+document.title
+#+END_SRC
+
+*Get current page URL*
+
+#+BEGIN_SRC js 
+document.URL
+#+END_SRC
+
+*Get the author* 
+
+#+BEGIN_SRC html 
+ <meta content="author M.r dummy" name="author">
+#+END_SRC
+
+#+BEGIN_SRC js 
+  Array.from(document.getElementsByTagName("meta"))
+      .find(function(e){return e.name == "author"})
+      .content
+#+END_SRC
+
+*Get description* 
+
+#+BEGIN_SRC html
+<meta content="A description of the page." name="description">
+#+END_SRC
+
+#+BEGIN_SRC js 
+  Array.from(document.getElementsByTagName("meta"))
+      .find(function(e){return e.name == "description"})
+      .content
+#+END_SRC
+
+*Get keywords*
+
+#+BEGIN_SRC html 
+  <meta content="keyword1 keyword2 keyword2" name="keywords">
+#+END_SRC
+
+#+BEGIN_SRC js 
+Array.from(document.getElementsByTagName("meta"))
+    .find(function(e){return e.name == "keywords"})
+    .content
+#+END_SRC
+
+*Redirect current page* 
+
+#+BEGIN_SRC js 
+window.location.href = "http://www.httpbin.org/get"
+#+END_SRC
+
+*Display a prompt*
+
+ - The promopt function is useful to read user input and allow user to
+   copy some data.
+
+#+BEGIN_SRC js 
+prompt("Window title", "Content")
+#+END_SRC
+
+
+** See also:
 
  - https://www.reddit.com/r/bookmarklets/
 
