@@ -2,40 +2,30 @@
 <index>
   <head>
     <title>Bookmarklet Maker</title>
-    <script>
-      function generateBookmarklet (){
-        var title = document.getElementById("title-input").value ;
-        var code  = document.getElementById("code-textarea").value;
-        var link  = document.getElementById("bookmarklet-a");
-        var codeOutput = document.getElementById("output-textarea");
 
-        var output = "javascript:" + encodeURIComponent(code);
-        
-        
-        link.text = title;
-        link.href = output;
-        codeOutput.value = output; 
-        
-      }
-
-
-     function generateOrgmodeLink(){
-       generateBookmarklet();
-
-       var title = document.getElementById("title-input").value ;
-       var code  = document.getElementById("code-textarea").value;
-       var output = "javascript:" + encodeURIComponent(code);
-
-       prompt("Org-mode link", "[[" + output + "][" + title + "]]"); 
-     }
-     
-    </script>
     
     <style>
      /* body {background-color: powderblue;} */
-     h1   {color: blue;}
+
+     h1   {
+       color: blue;
+       text-align: center;
+     }
+     
      p    {color: red;}
 
+     pre {
+       color:       light-gray;
+       display:     block;
+       font-family: monospace;
+       white-space: pre-wrap;       /* css-3 */
+       white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+       white-space: -pre-wrap;      /* Opera 4-6 */
+       white-space: -o-pre-wrap;    /* Opera 7 */
+       word-wrap: break-word;       /* Internet Explorer 5.5+ */
+       overflow: auto;
+     }
+     
      #code-textarea {
        font-size: 14px;
        line-height: 20px;
@@ -67,25 +57,95 @@
        list-style-type: none;
      }
      
-    </style>   
+    </style>
+
+    <script>
+     function generateBookmarklet (){
+       var title = document.getElementById("title-input").value ;
+       var code  = document.getElementById("code-textarea").value;
+       var link  = document.getElementById("bookmarklet-a");
+       var codeOutput = document.getElementById("output-textarea");
+
+       var output = "javascript:" +  encodeURIComponent("(function(){" + code +  "})();");
+       
+       link.text = title;
+       link.href = output;
+       codeOutput.value = output; 
+       
+     }
+
+
+     function generateOrgmodeLink(){
+       generateBookmarklet();
+
+       var title = document.getElementById("title-input").value ;
+       var code  = document.getElementById("code-textarea").value;
+       var output = "javascript:" + encodeURIComponent(code);
+
+       prompt("Org-mode link", "[[" + output + "][" + title + "]]"); 
+     }
+
+     function runCode (){
+       var code  = document.getElementById("code-textarea").value;
+       eval(code);
+     }
+
+     function clearCode(){
+       document.getElementById("title-input").value = "";
+       document.getElementById("code-textarea").value = "";       
+     }
+     
+    </script>
+    
   </head>
   <body>
-    <h1>Bookmarklet Maker</h1>
+    <div id="top.div">
+      <h1>Bookmarklet Maker</h1>
+      <a href="">Github Repository</a>
+    </div>
+    
     <div id="main.div">
       <ul id="nodisc-ul">
         <li>
           <label>Title:</label>
-          <input id="title-input"></input>
+          <input id="title-input" value="bookmarklet"></input>
         </li>
         <li> <label>Code</label></li>
-        <li> <textarea id="code-textarea"></textarea> </li>
+        <li> <textarea id="code-textarea">alert('hello world');</textarea> </li>
         <li>
           <a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a>
           <button onclick="generateBookmarklet();">Generate Bookmarklet</button>
+          <button onclick="runCode();">Run Code</button>
+          <button onclick="clearCode();">Clear</button>
         </li>
         <li><textarea id="output-textarea"></textarea>
       </ul>
     </div>
 
+    <div>
+      <h2>Usage:</h2>
+      <ul>
+        <li>Usage: Paste a code into the form and click on the button generate.</li>
+        <li>To test the bookmarklet click on the blue button.</li>
+        <li>To install the bookmarklet drag and drop it to the bookmars toolbar.</li>        
+      </ul>           
+    </div>
+
+    <div>
+      <h2>Examples:</h2>
+
+      <p>Sumbmit current URL to Reddit:</p>
+      <pre>
+  var url = document.URL ;
+  var title = document.title ;
+    
+  window.location.href = "https://www.reddit.com/r/"
+                          + prompt("Subreddit: ", "")
+                          + "/submit?title="
+                          + title + "&url="
+                          + url ;  
+      </pre>
+
+    </div>
   </body>
 </index>
