@@ -12,7 +12,6 @@ If you don't know what is a bookmarklet see:
 
  - [[https://www.youtube.com/watch?v=K_A3Y3eqnzE][Creating a Simple Bookmarklet - YouTube]]
 
-
 ** Bookmarklet Cheat Sheet 
 
 *Get current page title*
@@ -73,6 +72,21 @@ Array.from(document.getElementsByTagName("meta"))
 window.location.href = "http://www.httpbin.org/get"
 #+END_SRC
 
+
+*Get current date*
+
+#+BEGIN_SRC js
+> var d = new Date() ; (d.getYear() + 1900).toString() + "-" + d.getMonth().toString() + "-" + d.getDay().toString()
+"2016-9-4"
+#+END_SRC
+
+
+*Open url in a new tab*
+
+#+BEGIN_SRC js 
+window.open("http://www.yandex.com")
+#+END_SRC
+
 *Display a prompt*
 
  - The promopt function is useful to read user input and allow user to
@@ -81,7 +95,6 @@ window.location.href = "http://www.httpbin.org/get"
 #+BEGIN_SRC js 
 prompt("Window title", "Content")
 #+END_SRC
-
 
 ** See also:
 
