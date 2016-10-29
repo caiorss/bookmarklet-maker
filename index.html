@@ -8,29 +8,41 @@
     <meta name="author" content="Caio Rodrigues.">
     <style>
      /* body {background-color: powderblue;} */
+    html {
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      }
 
+      a { text-decoration: none; }
+      a[href]:link { color: rgb(196,69,29); }
+      a[href]:visited { color: rgb(171,105,84); }
+      a[href]:hover { text-decoration:underline; }     
+      
      h1   {
-       color: blue;
-       text-align: center;
+          color: rgb(78,98,114);
+          font-weight: bold;
+          border-bottom: 1px solid #ddd;
+          text-align: center;
      }
      
      p    {color: darkblue;}
 
-     pre {
-       color:       light-gray;
-       display:     block;
-       font-family: monospace;
-       white-space: pre-wrap;       /* css-3 */
-       white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-       white-space: -pre-wrap;      /* Opera 4-6 */
-       white-space: -o-pre-wrap;    /* Opera 7 */
-       word-wrap: break-word;       /* Internet Explorer 5.5+ */
-       overflow: auto;
-       background-color: #EBECE4; 
-	   width: 40%;
-       max-height: 400px;       
+     body {
+      font: 13px/1.4 sans-serif;
      }
-     
+
+      pre {
+        padding: 0.25em;
+        
+        margin: 0.8em 0;
+        background: rgb(229,237,244);
+        overflow: auto;
+        border-bottom: 0.25em solid white;
+        display: block;
+        width: 40%;
+      }
+
      #code-textarea {
        font-size: 14px;
        line-height: 20px;
@@ -39,10 +51,10 @@
        border: 1px solid #bbb;
        padding: 4px 7px;
        width:  725px;
-       height: 318px;        
+       height: 250px;        
      }
 
-     #output-textarea {
+     .output-textarea {
        width: 725px;
      }
 
@@ -61,9 +73,15 @@
      #nodisc-ul {
        list-style-type: none;
      }
+
+     li {
+       display: block;
+       padding: 10px 20px;
+     }
+
+     
      
     </style>
-
     <script>
 
      function cleanCode(code){
@@ -75,12 +93,15 @@
        var code  = document.getElementById("code-textarea").value;
        var link  = document.getElementById("bookmarklet-a");
        var codeOutput = document.getElementById("output-textarea");
+       var htmlOuput  = document.getElementById("htmlOuput-textarea");
 
        var output = "javascript:" +  encodeURIComponent("(function(){" + cleanCode(code) +  "})();");
        
        link.text = title;
        link.href = output;
-       codeOutput.value = output; 
+       codeOutput.value = output;
+
+       htmlOuput.value = "<a href=\"" + output + "\">" + title + "</a>"
        
      }
 
@@ -90,7 +111,7 @@
      }
 
      function clearCode(){
-       document.getElementById("title-input").value = "";
+       document.getElementById("title-input").value = "bookmarklet";
        document.getElementById("code-textarea").value = "";       
      }
      
@@ -111,13 +132,21 @@
         </li>
         <li> <label>Code</label></li>
         <li> <textarea id="code-textarea">alert('hello world');</textarea> </li>
-        <li>
-          <a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a>
+        <li>          
           <button onclick="generateBookmarklet();">Generate Bookmarklet</button>
           <button onclick="runCode();">Run Code</button>
           <button onclick="clearCode();">Clear</button>
+          
         </li>
-        <li><textarea id="output-textarea"></textarea>
+        <li><b>Bookmaklet: </b><a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a></li>
+        <li></li>
+        
+        <li><b>Output:</b></li>
+        <li><textarea id="output-textarea" class="output-textarea"></textarea></li>
+
+        <li><b>Html code:</b></li>
+        <li><textarea id="htmlOuput-textarea" class="output-textarea"></textarea></li>
+        
       </ul>
     </div>
 
@@ -133,7 +162,10 @@
     <div>
       <h2>Examples:</h2>
 
+      
       <p>Sumbmit current URL to Reddit:</p>
+      <p><a href="javascript:(function()%7Bvar%20url%20%3D%20document.URL%20%3B%0Avar%20title%20%3D%20document.title%20%3B%0Awindow.location.href%20%3D%20%22https%3A%2F%2Fwww.reddit.com%2Fr%2F%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20prompt(%22Subreddit%3A%20%22%2C%20%22%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20%22%2Fsubmit%3Ftitle%3D%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20title%20%2B%20%22%26url%3D%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20url%20%3B%7D)()%3B">Sumbmit to Reddit</a></p>
+      
       <pre>
 var url = document.URL ;
 var title = document.title ;
@@ -146,6 +178,8 @@ window.location.href = "https://www.reddit.com/r/"
       </pre>
 
       <p>Submit current URL to Reddit in a new tab</p>
+      <p><a href="javascript:(function()%7Bvar%20defaultSub%20%3D%20%22%22%0Avar%20subreddit%20%3D%20prompt(%22Enter%20the%20subreddit%22%2C%20defaultSub)%0Avar%20baseUrl%20%3D%20%20'https%3A%2F%2Fwww.reddit.com%2Fr%2F'%20%2B%20subreddit%20%2B%20'submit%3Ftitle%3D'%3B%0Awindow.open(baseUrl%20%2B%20document.title%20%2B%20'%26url%3D'%20%2B%20document.URL%2C%20'_blank')%7D)()%3B">Submit to reddit in a new tab</a></p> 
+      
       <pre>
 var defaultSub = "dummy"
 var subreddit = prompt("Enter the subreddit", defaultSub)
@@ -154,12 +188,15 @@ window.open(baseUrl + document.title + '&url=' + document.URL, '_blank')
       </pre>
 
       <p>Generate org-mode hyperlink</p>
+      <p><a href="javascript:(function()%7Bvar%20md%20%3D%20%22%5B%5B%22%20%2B%20document.URL%20%2B%20%22%5D%5B%22%20%2B%20document.title%20%2B%20%22%5D%5D%22%20%3B%0Aprompt(%22Enter%20Ctrl%2BC%20to%20copy%20this%20org-mode%20hyperlink.%20%3A%22%2C%20md)%3B%7D)()%3B">Org-mode hyperlink</a></p>
+      
       <pre>
 var md = "[[" + document.URL + "][" + document.title + "]]" ;
 prompt("Enter Ctrl+C to copy this org-mode hyperlink. :", md);
       </pre>
       
       <p>Clear google search URLs to allow easy copy URLs without messing it.</p>
+      <p><a href="javascript:(function()%7Bvar%20%24s%20%3D%20function%20(selector)%7B%0A%20%20%20%20return%20Array.from(document.querySelectorAll(selector))%3B%0A%7D%3B%0A%24s(%22.rc%20a%22).forEach(e%20%3D%3E%20e.onmousedown%20%3D%20null)%3B%7D)()%3B">Clear google URL</a></p>
       <pre>
 var $s = function (selector){
     return Array.from(document.querySelectorAll(selector));
