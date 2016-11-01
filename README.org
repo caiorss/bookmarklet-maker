@@ -1,3 +1,5 @@
+#+STARTUP: overview 
+
 * Bookmarklet Maker
 ** Overviiew 
 

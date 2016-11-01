@@ -204,6 +204,18 @@ var $s = function (selector){
 
 $s(".rc a").forEach(e => e.onmousedown = null);
       </pre>
+
+
+
+      <p>Inject css style sheet from a given URL into current page.</p>
+      <p><a href="javascript:(function()%7Bvar%20link%20%3D%20document.createElement(%22link%22)%3B%0Alink.href%20%3D%20prompt(%22css%20url%22%2C%20%22%22)%3B%0Alink.type%20%3D%20%22text%2Fcss%22%3B%0Alink.rel%20%3D%20%22stylesheet%22%3B%0Adocument.getElementsByTagName(%22head%22)%5B0%5D.appendChild(link)%3B%7D)()%3B">inject css</a></p>
+      <pre>
+var link = document.createElement("link");
+link.href = prompt("css url", "");
+link.type = "text/css";
+link.rel = "stylesheet";
+document.getElementsByTagName("head")[0].appendChild(link);
+      </pre>
       
     </div>
     
