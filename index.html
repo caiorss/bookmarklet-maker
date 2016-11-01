@@ -1,211 +1,351 @@
-<!DOCTYPE html>
-<index>
-  <head>
-    <title>Bookmarklet Maker</title>
-    <meta name="keywords" content="bookmarklet, hack, javascript, automate, browse, app"> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-    <meta name="description" content="Bookmarklet creator tool.">               
-    <meta name="author" content="Caio Rodrigues.">
-    <style>
-     /* body {background-color: powderblue;} */
-    html {
-      background-color: white;
-      width: 100%;
-      height: 100%;
-      }
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>README</title>
+<!-- 2016-10-27 qui 20:19 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Caio Rodrigues Soares Silva" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
 
-      a { text-decoration: none; }
-      a[href]:link { color: rgb(196,69,29); }
-      a[href]:visited { color: rgb(171,105,84); }
-      a[href]:hover { text-decoration:underline; }     
-      
-     h1   {
-          color: rgb(78,98,114);
-          font-weight: bold;
-          border-bottom: 1px solid #ddd;
-          text-align: center;
-     }
-     
-     p    {color: darkblue;}
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
 
-     body {
-      font: 13px/1.4 sans-serif;
-     }
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
-      pre {
-        padding: 0.25em;
-        
-        margin: 0.8em 0;
-        background: rgb(229,237,244);
-        overflow: auto;
-        border-bottom: 0.25em solid white;
-        display: block;
-        width: 40%;
-      }
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
 
-     #code-textarea {
-       font-size: 14px;
-       line-height: 20px;
-       height: 60px;
-       margin: 4px 0;
-       border: 1px solid #bbb;
-       padding: 4px 7px;
-       width:  725px;
-       height: 250px;        
-     }
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
 
-     .output-textarea {
-       width: 725px;
-     }
 
-     a.bookmarklet, a.button {
-       /* display: -moz-inline-box; */
-       /* display: inline-block; */
-       padding: 1px 6px;
-       color: #fff;
-       background: #32a0eb;
-       -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-       border-radius: 4px;
-   
-     }
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">README</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Bookmarklet Maker</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Overviiew</a></li>
+<li><a href="#sec-1-2">1.2. Bookmarklet Cheat Sheet</a></li>
+<li><a href="#sec-1-3">1.3. See also:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Bookmarklet Maker</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Overviiew</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Bookmarklet maker is a small web app to create bookmarklet or small
+executable Javascript apps to peform browser aumtomation tasks. 
+</p>
 
-     #nodisc-ul {
-       list-style-type: none;
-     }
+<p>
+You can run this app by accessing the hyperlink: 
+</p>
 
-     li {
-       display: block;
-       padding: 10px 20px;
-     }
+<ul class="org-ul">
+<li><a href="http://caiorss.github.io/bookmarklet-maker">http://caiorss.github.io/bookmarklet-maker</a> 
+</li>
+</ul>
 
-     
-     
-    </style>
-    <script>
+<p>
+If you don't know what is a bookmarklet see: 
+</p>
 
-     function cleanCode(code){
-       return code.trim()
-     }
-     
-     function generateBookmarklet (){
-       var title = document.getElementById("title-input").value ;
-       var code  = document.getElementById("code-textarea").value;
-       var link  = document.getElementById("bookmarklet-a");
-       var codeOutput = document.getElementById("output-textarea");
-       var htmlOuput  = document.getElementById("htmlOuput-textarea");
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=K_A3Y3eqnzE">Creating a Simple Bookmarklet - YouTube</a>
+</li>
+</ul>
+</div>
+</div>
 
-       var output = "javascript:" +  encodeURIComponent("(function(){" + cleanCode(code) +  "})();");
-       
-       link.text = title;
-       link.href = output;
-       codeOutput.value = output;
 
-       htmlOuput.value = "<a href=\"" + output + "\">" + title + "</a>"
-       
-     }
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Bookmarklet Cheat Sheet</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Get current page title</b>
+</p>
 
-     function runCode (){
-       var code  = document.getElementById("code-textarea").value;
-       eval(code);
-     }
+<div class="org-src-container">
 
-     function clearCode(){
-       document.getElementById("title-input").value = "bookmarklet";
-       document.getElementById("code-textarea").value = "";       
-     }
-     
-    </script>
-    
-  </head>
-  <body>
-    <div id="top.div">
-      <h1>Bookmarklet Maker</h1>
-      <a href="https://github.com/caiorss/bookmarklet-maker">Github Repository</a>
-    </div>
-    
-    <div id="main.div">
-      <ul id="nodisc-ul">
-        <li>
-          <label>Title:</label>
-          <input id="title-input" value="bookmarklet"></input>
-        </li>
-        <li> <label>Code</label></li>
-        <li> <textarea id="code-textarea">alert('hello world');</textarea> </li>
-        <li>          
-          <button onclick="generateBookmarklet();">Generate Bookmarklet</button>
-          <button onclick="runCode();">Run Code</button>
-          <button onclick="clearCode();">Clear</button>
-          
-        </li>
-        <li><b>Bookmaklet: </b><a id="bookmarklet-a" class="bookmarklet" href="">bookmarklet</a></li>
-        <li></li>
-        
-        <li><b>Output:</b></li>
-        <li><textarea id="output-textarea" class="output-textarea"></textarea></li>
+<pre class="src src-html">&lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Paget Title</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+</pre>
+</div>
 
-        <li><b>Html code:</b></li>
-        <li><textarea id="htmlOuput-textarea" class="output-textarea"></textarea></li>
-        
-      </ul>
-    </div>
+<div class="org-src-container">
 
-    <div>
-      <h2>Usage:</h2>
-      <ul>
-        <li>Usage: Paste a code into the form and click on the button generate.</li>
-        <li>To test the bookmarklet click on the blue button.</li>
-        <li>To install the bookmarklet drag and drop it to the bookmars toolbar.</li>        
-      </ul>           
-    </div>
+<pre class="src src-js">document.title
+</pre>
+</div>
 
-    <div>
-      <h2>Examples:</h2>
+<p>
+<b>Get current page URL</b>
+</p>
 
-      
-      <p>Sumbmit current URL to Reddit:</p>
-      <p><a href="javascript:(function()%7Bvar%20url%20%3D%20document.URL%20%3B%0Avar%20title%20%3D%20document.title%20%3B%0Awindow.location.href%20%3D%20%22https%3A%2F%2Fwww.reddit.com%2Fr%2F%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20prompt(%22Subreddit%3A%20%22%2C%20%22%22)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20%22%2Fsubmit%3Ftitle%3D%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20title%20%2B%20%22%26url%3D%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20url%20%3B%7D)()%3B">Sumbmit to Reddit</a></p>
-      
-      <pre>
-var url = document.URL ;
-var title = document.title ;
+<div class="org-src-container">
 
-window.location.href = "https://www.reddit.com/r/"
-                        + prompt("Subreddit: ", "")
-                        + "/submit?title="
-                        + title + "&url="
-                        + url ;  
-      </pre>
+<pre class="src src-js">document.URL
+</pre>
+</div>
 
-      <p>Submit current URL to Reddit in a new tab</p>
-      <p><a href="javascript:(function()%7Bvar%20defaultSub%20%3D%20%22%22%0Avar%20subreddit%20%3D%20prompt(%22Enter%20the%20subreddit%22%2C%20defaultSub)%0Avar%20baseUrl%20%3D%20%20'https%3A%2F%2Fwww.reddit.com%2Fr%2F'%20%2B%20subreddit%20%2B%20'submit%3Ftitle%3D'%3B%0Awindow.open(baseUrl%20%2B%20document.title%20%2B%20'%26url%3D'%20%2B%20document.URL%2C%20'_blank')%7D)()%3B">Submit to reddit in a new tab</a></p> 
-      
-      <pre>
-var defaultSub = "dummy"
-var subreddit = prompt("Enter the subreddit", defaultSub)
-var baseUrl =  'https://www.reddit.com/r/' + subreddit + 'submit?title=';
-window.open(baseUrl + document.title + '&url=' + document.URL, '_blank') 
-      </pre>
+<p>
+<b>Get the author</b> 
+</p>
 
-      <p>Generate org-mode hyperlink</p>
-      <p><a href="javascript:(function()%7Bvar%20md%20%3D%20%22%5B%5B%22%20%2B%20document.URL%20%2B%20%22%5D%5B%22%20%2B%20document.title%20%2B%20%22%5D%5D%22%20%3B%0Aprompt(%22Enter%20Ctrl%2BC%20to%20copy%20this%20org-mode%20hyperlink.%20%3A%22%2C%20md)%3B%7D)()%3B">Org-mode hyperlink</a></p>
-      
-      <pre>
-var md = "[[" + document.URL + "][" + document.title + "]]" ;
-prompt("Enter Ctrl+C to copy this org-mode hyperlink. :", md);
-      </pre>
-      
-      <p>Clear google search URLs to allow easy copy URLs without messing it.</p>
-      <p><a href="javascript:(function()%7Bvar%20%24s%20%3D%20function%20(selector)%7B%0A%20%20%20%20return%20Array.from(document.querySelectorAll(selector))%3B%0A%7D%3B%0A%24s(%22.rc%20a%22).forEach(e%20%3D%3E%20e.onmousedown%20%3D%20null)%3B%7D)()%3B">Clear google URL</a></p>
-      <pre>
-var $s = function (selector){
-    return Array.from(document.querySelectorAll(selector));
-};
+<div class="org-src-container">
 
-$s(".rc a").forEach(e => e.onmousedown = null);
-      </pre>
-      
-    </div>
-    
-  </body>
-</index>
+<pre class="src src-html">&lt;<span class="org-function-name">meta</span> <span class="org-variable-name">content</span>=<span class="org-string">"author M.r dummy"</span> <span class="org-variable-name">name</span>=<span class="org-string">"author"</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-js">Array.from(document.getElementsByTagName(<span class="org-string">"meta"</span>))
+    .find(<span class="org-keyword">function</span>(<span class="org-variable-name">e</span>){<span class="org-keyword">return</span> e.name == <span class="org-string">"author"</span>})
+    .content
+</pre>
+</div>
+
+<p>
+<b>Get description</b> 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">meta</span> <span class="org-variable-name">content</span>=<span class="org-string">"A description of the page."</span> <span class="org-variable-name">name</span>=<span class="org-string">"description"</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-js">Array.from(document.getElementsByTagName(<span class="org-string">"meta"</span>))
+    .find(<span class="org-keyword">function</span>(<span class="org-variable-name">e</span>){<span class="org-keyword">return</span> e.name == <span class="org-string">"description"</span>})
+    .content
+</pre>
+</div>
+
+<p>
+<b>Get keywords</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">meta</span> <span class="org-variable-name">content</span>=<span class="org-string">"keyword1 keyword2 keyword2"</span> <span class="org-variable-name">name</span>=<span class="org-string">"keywords"</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-js">Array.from(document.getElementsByTagName(<span class="org-string">"meta"</span>))
+    .find(<span class="org-keyword">function</span>(<span class="org-variable-name">e</span>){<span class="org-keyword">return</span> e.name == <span class="org-string">"keywords"</span>})
+    .content
+</pre>
+</div>
+
+<p>
+<b>Redirect current page</b> 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-js">window.location.href = <span class="org-string">"http://www.httpbin.org/get"</span>
+</pre>
+</div>
+
+
+<p>
+<b>Get current date</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-js">&gt; <span class="org-keyword">var</span> <span class="org-variable-name">d</span> = <span class="org-keyword">new</span> <span class="org-type">Date</span>() ; (d.getYear() + 1900).toString() + <span class="org-string">"-"</span> + d.getMonth().toString() + <span class="org-string">"-"</span> + d.getDay().toString()
+<span class="org-string">"2016-9-4"</span>
+</pre>
+</div>
+
+
+<p>
+<b>Open url in a new tab</b>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-js">window.open(<span class="org-string">"http://www.yandex.com"</span>)
+</pre>
+</div>
+
+<p>
+<b>Display a prompt</b>
+</p>
+
+<ul class="org-ul">
+<li>The promopt function is useful to read user input and allow user to
+copy some data.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js">prompt(<span class="org-string">"Window title"</span>, <span class="org-string">"Content"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> See also:</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><a href="https://www.reddit.com/r/bookmarklets/">https://www.reddit.com/r/bookmarklets/</a>
+</li>
+
+<li><a href="http://www.hongkiat.com/blog/100-useful-bookmarklets-for-better-productivity-ultimate-list/">100+ Useful Bookmarklets For Better Productivity | Ultimate List - Hongkiat</a>
+</li>
+
+<li><a href="http://www.howtogeek.com/189358/beginner-geek-how-to-use-bookmarklets-on-any-device/">Beginner Geek: How to Use Bookmarklets on Any Device</a>
+</li>
+
+<li><a href="http://lifehacker.com/395697/top-10-useful-bookmarklets">Top 10 Useful Bookmarklets</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Caio Rodrigues Soares Silva</p>
+<p class="date">Created: 2016-10-27 qui 20:19</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
