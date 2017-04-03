@@ -10,13 +10,12 @@ You can run this app by accessing the hyperlink:
 
  - http://caiorss.github.io/bookmarklet-maker 
 
-If you don't know what is a bookmarklet see: 
+If you don't know what is a bookmarklet, see: 
 
  - [[https://www.youtube.com/watch?v=K_A3Y3eqnzE][Creating a Simple Bookmarklet - YouTube]]
 
 ** Bookmarklet Cheat Sheet 
-
-*Get current page title*
+*** Get current page title
 
 #+BEGIN_SRC html 
 <title>Paget Title</title>
@@ -26,13 +25,13 @@ If you don't know what is a bookmarklet see:
 document.title
 #+END_SRC
 
-*Get current page URL*
+*** Get current page URL
 
 #+BEGIN_SRC js 
 document.URL
 #+END_SRC
 
-*Get the author* 
+*** Get author
 
 #+BEGIN_SRC html 
  <meta content="author M.r dummy" name="author">
@@ -44,7 +43,7 @@ document.URL
       .content
 #+END_SRC
 
-*Get description* 
+*** Get description
 
 #+BEGIN_SRC html
 <meta content="A description of the page." name="description">
@@ -56,7 +55,7 @@ document.URL
       .content
 #+END_SRC
 
-*Get keywords*
+*** Get keywords
 
 #+BEGIN_SRC html 
   <meta content="keyword1 keyword2 keyword2" name="keywords">
@@ -68,28 +67,26 @@ Array.from(document.getElementsByTagName("meta"))
     .content
 #+END_SRC
 
-*Redirect current page* 
+*** Redirect current page
 
 #+BEGIN_SRC js 
 window.location.href = "http://www.httpbin.org/get"
 #+END_SRC
 
-
-*Get current date*
+*** Get current date
 
 #+BEGIN_SRC js
 > var d = new Date() ; (d.getYear() + 1900).toString() + "-" + d.getMonth().toString() + "-" + d.getDay().toString()
 "2016-9-4"
 #+END_SRC
 
-
-*Open url in a new tab*
+*** Open url in a new tab
 
 #+BEGIN_SRC js 
 window.open("http://www.yandex.com")
 #+END_SRC
 
-*Display a prompt*
+*** Display a prompt
 
  - The promopt function is useful to read user input and allow user to
    copy some data.
@@ -97,6 +94,35 @@ window.open("http://www.yandex.com")
 #+BEGIN_SRC js 
 prompt("Window title", "Content")
 #+END_SRC
+
+*** URL manipulation 
+
+ - Open a file google Driver. 
+
+Example URL: https://drive.google.com/viewerng/viewer?url=lampwww.epfl.ch/~hmiller/scala2014/proceedings/p51-prokopec.pdf
+
+#+BEGIN_SRC js
+var baseurl = "http://lampwww.epfl.ch/~hmiller/scala2014/proceedings/p51-prokopec.pdf"
+var urlmod = "https://drive.google.com/viewerng/viewer?url=" + url 
+window.open(urlmod)
+#+END_SRC
+
+Open current page (PDF document in Google Driver).
+
+#+BEGIN_SRC js 
+window.open("https://drive.google.com/viewerng/viewer?url=" + document.URL);
+#+END_SRC
+
+Open a prompt showing Google driver URL to current document. Useful to
+create short URL in services like tiny URL and view document in
+Tablets or Smartphones. 
+
+
+#+BEGIN_SRC js 
+prompt("Google driver URL:", "https://drive.google.com/viewerng/viewer?url=" + document.URL);
+#+END_SRC
+
+
 
 ** See also:
 
