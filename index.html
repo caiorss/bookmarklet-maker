@@ -216,6 +216,17 @@ link.type = "text/css";
 link.rel = "stylesheet";
 document.getElementsByTagName("head")[0].appendChild(link);
       </pre>
+
+
+
+      <p>Open a prompt showing Google driver URL to current document. Useful to
+create short URL in services like tiny URL and view document in
+Tablets or Smartphones.</p>
+      <p><a href="javascript:(function()%7Bprompt(%22Google%20driver%20URL%3A%22%2C%20%22https%3A%2F%2Fdrive.google.com%2Fviewerng%2Fviewer%3Furl%3D%22%20%2B%20document.URL)%3B%7D)()%3B">Copy Gdriver URL</a></p>
+      <pre>
+prompt("Google driver URL:", "https://drive.google.com/viewerng/viewer?url=" + document.URL);
+      </pre>
+
       
     </div>
     
