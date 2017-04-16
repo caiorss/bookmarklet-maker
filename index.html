@@ -227,6 +227,18 @@ Tablets or Smartphones.</p>
 prompt("Google driver URL:", "https://drive.google.com/viewerng/viewer?url=" + document.URL);
       </pre>
 
+
+
+      <p>Open page that doesn't exist anymore in Web Archive</p>
+      <p>
+      <a href="javascript:(function()%7Bvar%20baseUrl%20%3D%20%22https%3A%2F%2Fweb.archive.org%2Fweb%2F*%2F%22%0Avar%20urlmod%20%20%3D%20document.URL%0Awindow.location.href%20%3D%20baseUrl%20%2B%20urlmod%7D)()%3B">open in WebArchive</a>
+      </p>
+      <pre>
+var baseUrl = "https://web.archive.org/web/*/"
+var urlmod  = document.URL
+window.location.href = baseUrl + urlmod
+      </pre>
+
       
     </div>
     
