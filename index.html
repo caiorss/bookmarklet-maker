@@ -228,6 +228,18 @@ prompt("Google driver URL:", "https://drive.google.com/viewerng/viewer?url=" + d
       </pre>
 
 
+      <p>Past some URL and open it in Google driver.</p>
+      <p>
+      <a href="javascript:(function()%7Bvar%20baseUrl%20%3D%20%22https%3A%2F%2Fdrive.google.com%2Fviewerng%2Fviewer%3Furl%3D%22%3B%0Avar%20url%20%3D%20prompt(%22Paste%20Url%22)%3B%0Aconsole.log(%22Url%20%3D%20%22%20%2B%20url)%20%3B%0Aif%20(url%20!%3D%20null)%7B%0A%20%20%20%20window.open(baseUrl%20%2B%20url)%3B%0A%7D%7D)()%3B">open Gdriver prompt</a>
+      </p>
+      <pre>
+var baseUrl = "https://drive.google.com/viewerng/viewer?url=";
+var url = prompt("Paste Url");
+if (url != null){
+    window.open(baseUrl + url);
+}
+ </pre>
+
 
       <p>Open page that doesn't exist anymore in Web Archive</p>
       <p>
