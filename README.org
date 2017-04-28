@@ -1,4 +1,7 @@
-#+STARTUP: overview 
+#+TITLE: Bookmarklet Maker 
+#+DESCROPTION: tool to create bookmarklets for browser automation.
+#+KEYWORKDS: browser, automation, tool, bookmarklet, javascript, js
+#+STARTUP: showall 
 
 * Bookmarklet Maker
 ** Overviiew 
@@ -68,6 +71,20 @@ Array.from(document.getElementsByTagName("meta"))
 > var d = new Date() ; (d.getYear() + 1900).toString() + "-" + d.getMonth().toString() + "-" + d.getDay().toString()
 "2016-9-4"
 #+END_SRC
+
+Function getDate()
+
+#+BEGIN_SRC js
+function getDate(){
+    var d = new Date();
+    return (d.getYear() + 1900).toString() + "-" +
+        d.getMonth().toString() + "-" + d.getDay().toString() ;
+}
+
+>> getDate()
+"2017-3-5"
+#+END_SRC
+
 *** Url
 **** Get current page URL
 
@@ -148,6 +165,33 @@ console.log(object);
 console.log("My message");
 #+END_SRC
 
+** Recipes
+*** Generate org-mode Bibliographical Reference
+
+#+BEGIN_SRC js 
+function getDate(){
+    var d = new Date()
+    return (d.getYear() + 1900).toString() + "-" +
+        d.getMonth().toString() + "-" + d.getDay().toString() ;
+};
+
+
+var text = '*' + document.title + '*' + " Accessed at " + getDate() +
+    ". Available at <" + document.URL + "> " ;
+
+prompt("Type Ctrl+A and Ctrl+C to copy the markdown", text);
+#+END_SRC
+
+It will generate a reference like this:
+
+ - *Overview of Forks, Threads, and Asynchronous I/O* Accessed at
+   2017-3-5. Available at
+   <http://www.remwebdevelopment.com/blog/overview-of-forks-threads-and-asynchronous-io-133.html>
+
+#+BEGIN_SRC org
+ - *Overview of Forks, Threads, and Asynchronous I/O* Accessed at 2017-3-5. Available at <http://www.remwebdevelopment.com/blog/overview-of-forks-threads-and-asynchronous-io-133.html> 
+#+END_SRC
+
 ** See also:
 
  - https://www.reddit.com/r/bookmarklets/
@@ -157,5 +201,6 @@ console.log("My message");
  - [[http://www.howtogeek.com/189358/beginner-geek-how-to-use-bookmarklets-on-any-device/][Beginner Geek: How to Use Bookmarklets on Any Device]]
 
  - [[http://lifehacker.com/395697/top-10-useful-bookmarklets][Top 10 Useful Bookmarklets]]
+
 
 
