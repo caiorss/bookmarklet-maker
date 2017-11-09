@@ -1,7 +1,7 @@
 #+TITLE: Bookmarklet Maker 
 #+DESCROPTION: tool to create bookmarklets for browser automation.
 #+KEYWORKDS: browser, automation, tool, bookmarklet, javascript, js
-#+STARTUP: showall 
+#+STARTUP: content 
 
 * Bookmarklet Maker
 ** Overviiew 
@@ -165,6 +165,7 @@ console.log(object);
 console.log("My message");
 #+END_SRC
 
+*** Style 
 ** Recipes
 *** Generate org-mode Bibliographical Reference
 
@@ -190,6 +191,28 @@ It will generate a reference like this:
 
 #+BEGIN_SRC org
  - *Overview of Forks, Threads, and Asynchronous I/O* Accessed at 2017-3-5. Available at <http://www.remwebdevelopment.com/blog/overview-of-forks-threads-and-asynchronous-io-133.html> 
+#+END_SRC
+
+*** Change the page width for better readability 
+
+This will set the page width to the width of an A4 ISO paper sheet
+that makes easier to read long texts in the browser.
+
+#+BEGIN_SRC js
+document.querySelector("body").style.setProperty("width", "800px")
+#+END_SRC
+
+*** Invert page color for enhancing reading at night 
+
+#+BEGIN_SRC js 
+document.querySelector("body").style.setProperty("color", "white")
+document.querySelector("body").style.setProperty("background", "black")
+#+END_SRC
+
+*** Change page background color 
+
+#+BEGIN_SRC js 
+document.querySelector("body").style.setProperty("background", "white")
 #+END_SRC
 
 ** See also:
