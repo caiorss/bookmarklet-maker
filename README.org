@@ -1,10 +1,10 @@
 #+TITLE: Bookmarklet Maker 
-#+DESCROPTION: tool to create bookmarklets for browser automation.
+#+DESCRIPTION: tool to create bookmarklets for browser automation.
 #+KEYWORKDS: browser, automation, tool, bookmarklet, javascript, js
 #+STARTUP: content 
 
 * Bookmarklet Maker
-** Overviiew 
+** Overview 
 
 Bookmarklet maker is a small web app to create bookmarklet or small
 executable Javascript apps to peform browser aumtomation tasks. 
@@ -118,7 +118,7 @@ window.location.href = baseUrl + urlmod
 #+END_SRC
 
 
- - Open a file google Driver. 
+ - Open a file with Google Driver. 
 
 Example URL: https://drive.google.com/viewerng/viewer?url=lampwww.epfl.ch/~hmiller/scala2014/proceedings/p51-prokopec.pdf
 
@@ -134,7 +134,7 @@ Open current page (PDF document in Google Driver).
 window.open("https://drive.google.com/viewerng/viewer?url=" + document.URL);
 #+END_SRC
 
-Open a prompt showing Google driver URL to current document. Useful to
+Open a prompt showing Google Driver URL to current document. Useful to
 create short URL in services like tiny URL and view document in
 Tablets or Smartphones. 
 
