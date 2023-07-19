@@ -102,7 +102,7 @@
        codeOutput.value = output;
 
        htmlOuput.value = "<a href=\"" + output + "\">" + title + "</a>"
-       
+       location.hash = encodeURIComponent(code.trim());
      }
 
      function runCode (){
@@ -114,7 +114,13 @@
        document.getElementById("title-input").value = "bookmarklet";
        document.getElementById("code-textarea").value = "";       
      }
-     
+
+     window.addEventListener("load", function() {
+       var code = decodeURIComponent((location.hash || "").substring(1)).trim();
+       if (code.length > 0) {
+         document.getElementById("code-textarea").value = code;
+       }
+     });
     </script>
     
   </head>
