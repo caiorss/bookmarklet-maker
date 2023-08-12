@@ -85,7 +85,7 @@
     <script>
 
      function cleanCode(code){
-       return code.trim()
+       return code.replace(/\/\/.*?$|\/\*[\s\S]*?\*\//gm, '').replace(/^\s*\n/gm, '').trim()
      }
      
      function generateBookmarklet (){
